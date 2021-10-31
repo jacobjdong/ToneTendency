@@ -47,9 +47,13 @@ def create():
     matrix = TextModelVectorizer.transform([Sentences[sentence[0]]])
     predictions = TextModel.predict_proba(matrix)
     predictions = predictions[0].tolist()
-    for i in range(0, len(predictions)):
+    sum = 0.0
+    for i in range(1, len(predictions)):
+        sum = sum + predictions[i]
+    factor = 1 / sum 
+    for i in range(1, len(predictions)):
         returnBody = returnBody + Emotions[i] + ":"
-        returnBody = returnBody + str(predictions[i]) + ","
+        returnBody = returnBody + str(predictions[i] * factor) + ","
     
     return returnBody[:-1]
 
@@ -58,11 +62,24 @@ def create():
 @app.route('/endSentence', methods=['POST'])
 def read():
     file = request.form['file']
-    #data = request.files['id']
-    #return Sentences[data]
-    file1 = open("test.wav", "w")
+    data = request.form['id']
+    matrix = TextModelVectorizer.transform([Sentences[data]])
+    predictions = TextModel.predict_proba(matrix)
+    predictions = predictions[0].tolist()
+    file1 = open("temp.wav", "w")
     file1.write(str(file))
-    predict()
+    voicePredictions = predict("temp.wav")
+
+    for i in range(1, len(predictions)):
+        sum = sum + predictions[i]
+    factor = 1 / sum 
+
+    returnBody = "Anger: " + ((voicePredictions["Anger"] + (predictions[1] * factor)) / 2)
+    returnBody = returnBody + "Disgust: " + ((voicePredictions["Disgust"] + (predictions[2] * factor)) / 2)
+    returnBody = returnBody + "Fear: " + ((voicePredictions["Fear"] + (predictions[3] * factor)) / 2)
+    returnBody = returnBody + "Happiness: " + ((voicePredictions["Happiness"] + (predictions[4] * factor)) / 2)
+    returnBody = returnBody + "Sadness: " + ((voicePredictions["Sadness"] + (predictions[5] * factor)) / 2)
+    returnBody = returnBody + "Surprise: " + ((voicePredictions["Surprise"] + (predictions[6] * factor)) / 2)
 
 def extract_features(data, sample_rate):
     # ZCR
