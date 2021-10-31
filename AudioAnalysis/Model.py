@@ -1,13 +1,13 @@
 import numpy as np
 import joblib as joblib
-# librosa is a Python library for analyzing audio and music. It can be used to extract the data from the audio files we will see it later.
 import librosa
+import tensorflow
+import sys
+import warnings
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-import tensorflow
 from tensorflow import keras
 
-import warnings
 if not sys.warnoptions:
     warnings.simplefilter("ignore")
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
