@@ -6,6 +6,7 @@ import joblib
 import numpy as np
 import joblib
 import librosa
+from numpy.lib.function_base import extract
 import tensorflow
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -54,10 +55,14 @@ def create():
 
 
 
-#@app.route('/endSentence', methods=['GET'])
-#def read():
-#    data = str(request.)
-#    print("hey")
+@app.route('/endSentence', methods=['POST'])
+def read():
+    file = request.form['file']
+    #data = request.files['id']
+    #return Sentences[data]
+    file1 = open("test.wav", "w")
+    file1.write(str(file))
+    predict()
 
 def extract_features(data, sample_rate):
     # ZCR
