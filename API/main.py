@@ -4,7 +4,7 @@
 import time
 import joblib
 import numpy as np
-import joblib as joblib
+import joblib
 import librosa
 import tensorflow
 
@@ -54,10 +54,10 @@ def create():
 
 
 
-@app.route('/endSentence', methods=['GET'])
-def read():
-    data = str(request.)
-    print("hey")
+#@app.route('/endSentence', methods=['GET'])
+#def read():
+#    data = str(request.)
+#    print("hey")
 
 def extract_features(data, sample_rate):
     # ZCR
