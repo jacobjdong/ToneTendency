@@ -1,4 +1,4 @@
-#ToneTendency
+<b>ToneTendency</b>
 ToneTendency is a native Android and IOS app that implements both a naive bayes classifier and convolutional neural network to provide near real time spoken word emotional analysis
 
 #Inspiration
