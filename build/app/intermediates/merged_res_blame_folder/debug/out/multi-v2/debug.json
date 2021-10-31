@@ -31,25 +31,10 @@
             ]
         },
         {
-            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat",
+            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-ar/values-ar.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-es_values-es.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-es/values-es.xml",
+                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-ml/values-ml.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -76,10 +61,25 @@
             ]
         },
         {
-            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-ml_values-ml.arsc.flat",
+            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-es_values-es.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-ml/values-ml.xml",
+                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-es/values-es.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/jacob/Documents/GitHub/ToneTendency/build/app/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/jacob/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-ar/values-ar.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

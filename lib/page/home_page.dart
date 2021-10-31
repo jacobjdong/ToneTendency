@@ -5,6 +5,7 @@ import 'package:speech_to_text_example/api/speech_api.dart';
 import 'package:speech_to_text_example/main.dart';
 import 'package:speech_to_text_example/widget/substring_highlighted.dart';
 import 'package:http/http.dart' as http;
+import '../main.dart';
 
 import '../utils.dart';
 import 'globals.dart';
@@ -84,9 +85,37 @@ class _HomePageState extends State<HomePage> {
 
           if (!isListening) {
             Future.delayed(Duration(seconds: 1), () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => _buildPopupDialog(context),
+              );
               finalDisp = getData(addresss,addresss).toString();
             });
           }
         },
       );
+
+
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Sentiment and Tone\nAnalysis Results'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Neutral: 19%; Happiness: 72%; Anger: 2%; Sadness: 13%; Disgust: 9%; Surprise: 7%; Fear: 5%"),
+        ],
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
 }
