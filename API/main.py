@@ -23,7 +23,7 @@ AudioModel = keras.models.load_model("./data/audioclassifier/audiomodel")
 encoder = joblib.load("./data/audioclassifier/encoder.save") 
 scaler = joblib.load("./data/audioclassifier/scaler.save") 
 workdir = "./data/working/"
-audio_predict_order = ['angry', 'calm', 'digust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
+audio_predict_order = ['Anger', 'Calm', 'Disgust', 'Fear', 'Happiness', 'Neutral', 'Sadness', 'Surprise']
 
 Emotions = ["Neutral", "Anger", "Disgust", "Fear", "Happiness", "Sadness", "Surprise"]
 TextModel = joblib.load('./data/textclassifier/classifier.joblib.pkl')
@@ -98,7 +98,8 @@ def predict(path) :
     x_pred = np.expand_dims(X, axis=2)
     x_pred = AudioModel.predict(x_pred)
     result = {}
-    for x in range(8):
+    result[audio_predict_order[0]]= x_pred[0,0]
+    for x in range(2, 8):
         result[audio_predict_order[x]]= x_pred[0,x]
     return result
 
