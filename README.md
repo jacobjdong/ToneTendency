@@ -1,2 +1,26 @@
-# ToneTendency
-HackTX..
+#ToneTendency
+ToneTendency is a native Android and IOS app that implements both a naive bayes classifier and convolutional neural network to provide near real time spoken word emotional analysis
+
+#Inspiration
+Our team wanted to combine the quick sentiment classification capabilities of naive bayes with a more powerful but slower convolutional neural network. In order to accomplish this, we designed an API with two endpoints, one which relies on the multinomial naive bayes classifier and another, backed by a convolutional neural network that determines sentiment from waveform data.
+
+#What it does
+ToneTendency is an application and API that listens to the user's audio input, and returns weights and types of emotion it believes the user is undergoing. These attributes include anger, happiness, disgust, fear, sadness, surprise, on a scale of 0 to 1. This can be used in any application that relies on verbal communication. Our app takes a two pronged approach- using Naive Bayes classifiers to weight sentiment analysis as well as a Keras Tensorflow 2.0 algorithm that analyzes tones from audio files.
+
+#More about the API
+In order to enable fast classification, we created two endpoints (/addWord and /endSentence). When the user clicks the record button on our app, a POST call to /addWord is made with an empty body. This call returns a unique identifier that ensures multi-user support. Then, an onUpdate listener is activated whenever the phone recognizes a word the user speaks. This word is then passed to /addWord along with the aforementioned ID where it is added to the previous words already associated with the ID. This completed string is then run through the naive bayes classifier and the results are returned to the application within half a second for near real time feedback. When the sentence is finished (either by ending recording by tapping the microphone icon or there being a significant pause), a call to /endSentence is made which takes the completed sentence along with waveform information of the entire interaction and feeds the data into the naive bayes classifier one last time before combining its results with that of the tonal analysis neural network.
+
+#How we built it
+The app itself was built in Flutter, a native IOS and Android framework coded in the programming language Dart. Inside the Dart app, we used a Flutter speech-to-text API to return real time texts, which were incrementally fed to the Naive Bayes algorithm (as the words were spoken), trained on a 80,000+ sentence data set, which would then compound the words in the sentence to determine sentiment. At the end of the audible paragraph or phrase, the app then sends waveform data to the second part of the algorithm, an audio analysis component that performs feature length analysis on arbitrary length audio using a convolutional neural network. This returns 6 tones (anger, happiness, disgust, fear, sadness, surprise), with their associated probabilities.
+
+#Challenges we ran into
+The biggest struggle was definitely being able to both run Flutter's speech-to-text API as well as recording an .mp3 while also parsing audio input. We tried dozens of ways to record and save audio, and yet most of them had package conflicts with the speech-to-text or simply didn't work because of deprecated libraries and dependencies. Another challenge was finding adequate datasets for both text and audio data as the end tones had to be the same.
+
+#Accomplishments that we're proud of
+We're definitely proud of learning tons of new skills, and building a functional app with two classification algorithms that feed information through a REST API to the frontend for display. We also really were proud of the amount of accuracy we got to both of the sentiment analysis algorithms- up at around 65% for the neural net and 70% for the naive bayes classifier.
+
+#What we learned
+Although it may have only been 24 hours, we learned more than we could've imagined. 3 of our team members working in Flutter for the first time, and none of us had ever used data sets to train a machine learning algorithm! Also, for 3 of our team members, this was their first time at a hackathon! We learned about team dynamics, technical troubleshooting, and working on projects on a time crunch.
+
+#What's next for ToneTendency
+In the future, we would definitely like to see ToneTendency applied to multiple relevant real world use cases. We believe that ToneTendency can be used to improve customer interactions for multiple working groups including support agents, tutors, or even first responders. We also would love to modernize the UI/UX design of the app, something we didn't spend much time on because we were more focused on the backend code and functionality. We also considered building our implementation around the valence-arousal theory of emotion. We would have weighted the tonal analysis towards determining the arousal, or excitement/energy behind an emotion and weighted the naive bayes classifier towards determining the valence, or positivity/negativity. This would have allowed for us to consider all probabilities when making a final judgement and would have also enabled us to classify users into more specific groups.
