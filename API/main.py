@@ -23,14 +23,15 @@ def create():
     returnBody = ""
     data = str(request.get_data(as_text=True))
     sentence = data.split(",")
+    id = str(sentence[0])
 
-    if str(sentence[0]) not in Sentences:
+    if id not in Sentences:
         now = int(time.time())
         Sentences[str(now)] = ""
         return str(now)
     
     
-    Sentences[sentence[0]] = Sentences[sentence[0]] + sentence[1]
+    Sentences[id] = Sentences[id] + " " + str(sentence[1])
     matrix = TextModelVectorizer.transform([Sentences[sentence[0]]])
     predictions = TextModel.predict_proba(matrix)
     predictions = predictions[0].tolist()
